@@ -58,12 +58,7 @@ class PeripheralRemovableNoble extends Noble {
       delete this._services[uuid];
       delete this._characteristics[uuid];
       delete this._descriptors[uuid];
-      const previouslyDiscoverdIndex = this._discoveredPeripheralUUids.indexOf(
-        uuid
-      );
-      if (previouslyDiscoverdIndex >= 0) {
-        this._discoveredPeripheralUUids.splice(previouslyDiscoverdIndex, 1);
-      }
+      delete this._discoveredPeripheralUUids[uuid] = false;
       debug(`Peripheral(uuid:${uuid}) has gone.`);
       this.emit('miss', peripheral);
     }
